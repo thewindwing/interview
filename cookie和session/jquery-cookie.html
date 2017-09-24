@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.cookie.js"></script>
+  <script type="text/javascript">
+    $.cookie('kitty', 'kittyname');
+    // $.cookie('name', 'value2',{expires : 3,path : '/'});
+
+    // console.log($.cookie('name'));
+    $.removeCookie('age');//这里删除的age的路径必须和设置的路径一样
+    console.log($.cookie().age);
+  </script>
+</head>
+<body>
+  <div>jquery-cookie</div>
+</body>
+</html>

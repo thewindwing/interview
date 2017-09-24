@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript">
+  /*
+  cookie操作：设置cookie；获取cookie
+
+  cookie的存储数据量限制：4kByte 4096个英文字符
+
+  设置cookie 
+  document.cookie = 'uname=lisi';
+
+  cookie分类：
+  1、会话cookie，数据存储在内存，浏览器关闭后就消失了
+  2、持久cookie，数据存储在浏览器指定的文件中，过期之后小时
+
+  cookie常用的属性
+  expires 表示有效期
+  path 表示路径 (在父路径下设置的cookie，子路径可以获取到，反之不可以)
+
+
+  http://www.baidu.com/a/b/c.html
+
+  */
+  // document.cookie = 'uname=lisi';
+
+  var date = new Date();
+  date.setDate(date.getDate() + 3);
+  // console.log(date);
+  // console.log(date.toGMTString());
+// 
+  document.cookie = 'age=12; expires=' + date.toGMTString();
+
+  // document.cookie = 'abc=123; path=/; expires=' + date.toGMTString();
+  // -----------------------------------------------------
+
+  // 获取cookie
+  console.log(document.cookie);// uname=lisi; age=12; abc=123
+
+  // 封装一个方法获取指定的cookie
+  function getCookie(key){
+    var all = document.cookie;
+    var result = null;
+    if(all){
+      var kvs = all.split('; ');
+      kvs.forEach(function(item){
+        var kv = item.split('=');
+        if(key == kv[0]){
+          // 找到了对应的cookie
+          result = kv[1];
+          return false;// 终止forEach循环
+        }
+      });
+    }
+    return result;
+  }
+  // var ret = getCookie('uname');
+  // console.log(ret);
+
+  // 设置cookie
+  function setCookie(key,value,options){
+    var cookie = key + '=' + value;
+    for(var key in options){
+      cookie += '; ' + key + '=' + options[key];
+    }
+    document.cookie = cookie;
+  }
+
+  setCookie('hello','nihao',{
+    expires : date.toGMTString(),
+    path : '/'
+  })
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
